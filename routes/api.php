@@ -42,6 +42,8 @@ Route::post('/login', LoginController::class)->name('login');
 Route::get('books', [BookController::class, 'index']);
 Route::get('books/{id}', [BookController::class, 'show']);
 Route::post('books', [BookController::class, 'store']);
+Route::post('books/{id}', [BookController::class, 'update']);
+Route::delete('books/{id}', [BookController::class, 'destroy']);
 
 // User List
 Route::get('users', [UserController::class, 'index']);
