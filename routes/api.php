@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\BookController;
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,21 +22,33 @@ use Illuminate\Support\Facades\Route;
  * route "/register"
  * @method "POST"
  */
-Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
+Route::post('/register', RegisterController::class)->name('register');
 
 /**
  * route "/login"
  * @method "POST"
  */
-Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
+Route::post('/login', LoginController::class)->name('login');
 
 /**
  * route "/user"
  * @method "GET"
  */
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Book List
+Route::get('books', [BookController::class, 'index']);
+Route::get('books/{id}', [BookController::class, 'show']);
+Route::post('books', [BookController::class, 'store']);
+
+// User List
+Route::get('users', [UserController::class, 'index']);
+Route::post('users', [UserController::class, 'store']);
+Route::get('users/{user}', [UserController::class, 'show']);
+Route::put('users/{user}', [UserController::class, 'update']);
+Route::delete('users/{user}', [UserController::class, 'destroy']);
 
 /**
  * route "/logout"
