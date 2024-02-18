@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\BookController;
 use App\Http\Controllers\Api\BookCategoryController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\PreTestController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,8 @@ Route::post('users', [UserController::class, 'store']);
 Route::get('users/{user}', [UserController::class, 'show']);
 Route::put('users/{user}', [UserController::class, 'update']);
 Route::delete('users/{user}', [UserController::class, 'destroy']);
+
+Route::get('pretest', [PreTestController::class, 'index']);
 
 /**
  * route "/logout"
