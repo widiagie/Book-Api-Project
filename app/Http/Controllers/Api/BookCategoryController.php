@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BookCategory;
 use Illuminate\Http\Request;
 
-class CategoryBooksController extends Controller
+class BookCategoryController extends Controller
 {
     /**
      * Handle the incoming request.

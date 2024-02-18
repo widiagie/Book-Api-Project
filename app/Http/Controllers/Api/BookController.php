@@ -27,7 +27,7 @@ class BookController extends Controller
         {
             $books = New Books;
             $books->title = $request->title;
-            $books->category = $request->category;
+            $books->category_id = $request->category_id;
             $books->author = $request->author;
             $books->publish_date = $request->publish_date;
             $books->save();
@@ -46,8 +46,12 @@ class BookController extends Controller
     {
         try
         {
+            $book = DB::table('books')
+                ->join('book_category', 'book_category.id', '=', 'books.category_id')
+                ->select('books.*', 'book_category.category_name')
+                ->where(['books.id' => $id])
+                ->get();
 
-            $book = Books::find($id);
             if (!empty($book))
             {
                 return response()->json($book);
@@ -73,7 +77,7 @@ class BookController extends Controller
             {
                 $book = Books::find($id);
                 $book->title = is_null($request->title) ? $book->title : $request->title;
-                $book->category = is_null($request->category) ? $book->category : $request->category;
+                $book->category_id = is_null($request->category_id) ? $book->category_id : $request->category_id;
                 $book->author = is_null($request->author) ? $book->author : $request->author;
                 $book->publish_date = is_null($request->publish_date) ? $book->publish_date : $request->publish_date;
                 $book->update();
