@@ -6,20 +6,25 @@ use App\Models\Books;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Exceptions\QueryException;
+use Illuminate\Support\Facades\DB;
 
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Books::all();
+        $books = DB::table('books')
+            ->join('book_category', 'book_category.id', '=', 'books.category_id')
+            ->select('books.*', 'book_category.category_name')
+            ->get();
+
         return response()->json($books);
     }
 
     public function store(Request $request)
     {
-        try {
-
+        try
+        {
             $books = New Books;
             $books->title = $request->title;
             $books->category = $request->category;
@@ -39,7 +44,8 @@ class BookController extends Controller
 
     public function show($id)
     {
-        try {
+        try
+        {
 
             $book = Books::find($id);
             if (!empty($book))
@@ -61,8 +67,8 @@ class BookController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
-
+        try
+        {
             if (Books::where('id', $id)->exists())
             {
                 $book = Books::find($id);
@@ -74,6 +80,33 @@ class BookController extends Controller
 
                 return response()->json([
                     "message" => "Book Updated.",
+                    'status' => 200
+                ], 200);
+            }
+            else
+            {
+                return response()->json([
+                    "message" => "Book not found.",
+                    'status' => 404
+                ], 404);
+            }
+
+        } catch (\Exception $e) {
+            throw new QueryException($e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try
+        {
+            if (Books::where('id', $id)->exists())
+            {
+                $book = Books::find($id);
+                $book->delete();
+
+                return response()->json([
+                    "message" => "Book Record Deleted.",
                     'status' => 200
                 ], 200);
             }

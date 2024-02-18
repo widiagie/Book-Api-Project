@@ -17,7 +17,7 @@ class BooksSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             Books::create([
                 'title' => $faker->sentence,
-                'category' => $faker->randomElement(['Adventure','Biography','Comics','Fantasy','Horror','Mystery','Romance','Science-fiction']),
+                'category_id' => rand(1, 9),
                 'author' => $faker->name,
                 'publish_date' => $faker->date,
             ]);

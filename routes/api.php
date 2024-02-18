@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\BookController;
+use App\Http\Controllers\Api\CategoryBooksController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +37,9 @@ Route::post('/login', LoginController::class)->name('login');
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+// Book Categories List
+Route::get('book-category', [CategoryBooksController::class, 'index']);
 
 // Book List
 Route::get('books', [BookController::class, 'index']);
