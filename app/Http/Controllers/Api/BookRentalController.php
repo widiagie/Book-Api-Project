@@ -20,6 +20,7 @@ class BookRentalController extends Controller
             ->leftJoin('book_category', 'book_category.id', '=', 'books.category_id')
             ->join('users', 'users.id', '=', 'book_rental.user_id')
             ->select('books.title','book_category.category_name','books.author','users.name','users.email','book_rental.rent','book_rental.updated_by')
+            ->where('book_rental.rent','=','Y')
             ->get();
 
         return response()->json($rental);
@@ -34,7 +35,7 @@ class BookRentalController extends Controller
                 ->leftJoin('book_category', 'book_category.id', '=', 'books.category_id')
                 ->join('users', 'users.id', '=', 'book_rental.user_id')
                 ->select('books.title','book_category.category_name','books.author','users.name','users.email','book_rental.rent','book_rental.updated_by')
-                ->where(['books.id' => $id])
+                ->where(['books.id' => $id, 'book_rental.rent' => 'Y'])
                 ->get();
 
             if (!empty($rental))
