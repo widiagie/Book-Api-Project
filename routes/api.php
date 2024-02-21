@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\BookController;
 use App\Http\Controllers\Api\BookCategoryController;
+use App\Http\Controllers\Api\BookRentalController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PreTestController;
 use App\Http\Controllers\Api\UserController;
@@ -41,13 +42,23 @@ Route::post('/login', LoginController::class)->name('login');
 
 // Book Categories List
 Route::get('book-category', [BookCategoryController::class, 'index']);
+Route::post('add-book-category', [BookCategoryController::class, 'store']);
+Route::post('update-book-category/{id}', [BookCategoryController::class, 'update']);
+Route::delete('delete-book-category/{id}', [BookCategoryController::class, 'destroy']);
 
 // Book List
 Route::get('books', [BookController::class, 'index']);
 Route::get('books/{id}', [BookController::class, 'show']);
-Route::post('books', [BookController::class, 'store']);
-Route::post('books/{id}', [BookController::class, 'update']);
-Route::delete('books/{id}', [BookController::class, 'destroy']);
+Route::post('add-books', [BookController::class, 'store']);
+Route::post('update-books/{id}', [BookController::class, 'update']);
+Route::delete('delete-books/{id}', [BookController::class, 'destroy']);
+
+// Rental List
+Route::get('book-rental', [BookRentalController::class, 'index']);
+Route::get('book-rental/{id}', [BookRentalController::class, 'show']);
+Route::post('add-book-rental', [BookRentalController::class, 'store']);
+Route::post('update-book-rental/{id}', [BookRentalController::class, 'update']);
+Route::delete('delete-book-rental/{id}', [BookRentalController::class, 'destroy']);
 
 // User List
 Route::get('users', [UserController::class, 'index']);
