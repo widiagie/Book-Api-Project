@@ -86,3 +86,66 @@ Login and Register
 
     http://localhost:8000/api/logout
 
+Book
+
+    GET :
+
+    http://localhost:8000/api/books
+    http://localhost:8000/api/books/{id}
+    
+    POST:
+
+    Add :
+    http://localhost:8000/api/add-books
+
+    Update:
+    http://localhost:8000/api/update-books/{id}
+
+    DELETE:
+
+    http://localhost:8000/api/delete-books/{id}
+
+Book Rental
+
+    GET :
+
+    http://localhost:8000/api/book-rental
+    http://localhost:8000/api/book-rental/{id}
+    
+    POST:
+
+    Add :
+    http://localhost:8000/api/add-book-rental
+
+    Update:
+    http://localhost:8000/api/update-book-rental/{id}
+
+    DELETE:
+    
+    http://localhost:8000/api/delete-book-rental/{id}
+
+
+Book Category
+
+    GET :
+
+    http://localhost:8000/api/book-category
+    
+    POST:
+
+    Add :
+    http://localhost:8000/api/add-book-category
+
+    Update:
+    http://localhost:8000/api/update-book-category/{id}
+
+    DELETE:
+
+    http://localhost:8000/api/delete-book-category/{id}
+
+Pre Test
+
+    http://localhost:8000/api/pretest
+
+
+
